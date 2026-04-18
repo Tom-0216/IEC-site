@@ -800,8 +800,10 @@
     #scroll-top:hover { background: var(--teal); transform: translateY(-3px); }
 
     /* ─── ANIMATIONS ──────────────────────────────────────── */
-    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in { opacity: 1; transform: translateY(0); transition: opacity .6s ease, transform .6s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .js-loaded .fade-in { opacity: 0; transform: translateY(30px); }
+    .js-loaded .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 1024px) {
