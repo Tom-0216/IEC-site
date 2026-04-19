@@ -895,7 +895,185 @@
       p, h1, h2, h3, h4, li, a { overflow-wrap: break-word; word-break: break-word; }
     }
       @keyframes hero-blink{0%,100%{opacity:1;}50%{opacity:.25;}}
-</style>
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    #site-footer {
+      background: var(--navy);
+      color: #fff;
+      padding-top: 64px;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.4fr;
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .footer-logo-wrap {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+    }
+    .footer-iec {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #fff;
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+    .footer-iec-sub {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-top: 4px;
+    }
+    .footer-tagline {
+      font-size: .88rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.7;
+      max-width: 300px;
+    }
+    .footer-heading {
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,.65);
+      font-size: .9rem;
+      transition: color .25s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,.65);
+      font-size: .88rem;
+      transition: color .25s;
+      word-break: break-all;
+    }
+    .footer-contact-btn:hover { color: var(--teal); }
+    .footer-socials {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: .88rem;
+      font-weight: 600;
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.85);
+      border: 1px solid rgba(255,255,255,.1);
+      transition: all .25s;
+    }
+    .social-btn:hover {
+      background: rgba(255,255,255,.14);
+      color: #fff;
+      border-color: rgba(255,255,255,.25);
+      transform: translateX(3px);
+    }
+    .social-btn-teal {
+      background: rgba(68,170,170,.15);
+      border-color: rgba(68,170,170,.3);
+      color: #44AAAA;
+    }
+    .social-btn-teal:hover {
+      background: rgba(68,170,170,.25);
+      color: #5ecece;
+    }
+    .footer-bottom {
+      padding: 20px 0;
+      background: rgba(0,0,0,.15);
+    }
+    .footer-bottom-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom-inner p {
+      font-size: .82rem;
+      color: rgba(255,255,255,.4);
+    }
+    .footer-legal-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-legal-links a {
+      font-size: .82rem;
+      color: rgba(255,255,255,.45);
+      transition: color .25s;
+    }
+    .footer-legal-links a:hover { color: var(--teal); }
+
+    /* ─── MODAL ──────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 99999;
+      background: rgba(13,41,85,.7);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0,0,0,.25);
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      border-radius: 50%; border: none;
+      background: var(--light); color: var(--navy);
+      font-size: 1.3rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .modal-close:hover { background: var(--red); color: #fff; }
+    .modal-box h2 { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
+    .modal-box h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin: 20px 0 8px; }
+    .modal-box p  { font-size: .88rem; color: var(--muted); line-height: 1.75; margin-bottom: 12px; }
+
+    /* ─── FOOTER RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 560px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom-inner { flex-direction: column; text-align: center; }
+      .footer-legal-links { justify-content: center; }
+    }
+
+  </style>
 </head>
 <body>
 
@@ -933,13 +1111,9 @@
   }
 
   // ── Modal ──────────────────────────────────────────────
-  function openModal(id) {
-    var el = document.getElementById(id);
-    if(el){ el.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  
   }
-  function closeModal(id) {
-    var el = document.getElementById(id);
-    if(el){ el.style.display = 'none'; document.body.style.overflow = ''; }
+  
   }
 
   // ── Run after full page loads ──────────────────────────
@@ -2060,4 +2234,180 @@
     <!-- Elfsight Instagram Feed -->
     <div class="elfsight-app-6fba9f9b-be5f-491a-8478-5066904f80f7" data-elfsight-app-lazy style="margin-bottom:32px;"></div>
 
->
+  </div><!-- /container -->
+</section><!-- /instagram -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  FOOTER                                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer id="site-footer">
+  <div class="footer-inner container">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <span class="footer-iec">IEC</span>
+        <span class="footer-iec-sub">International Education Camp</span>
+      </div>
+      <p class="footer-tagline">Language immersion programmes for schools across Europe. Counsellors from 20+ countries. Trusted by 50+ schools.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col">
+      <h4 class="footer-heading">Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#about">About IEC</a></li>
+        <li><a href="#programmes">Programmes</a></li>
+        <li><a href="#english-habit">The English Habit</a></li>
+        <li><a href="#counsellors">Our Counsellors</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#apply">Apply / Volunteer</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact & Social -->
+    <div class="footer-col">
+      <h4 class="footer-heading">Get In Touch</h4>
+      <a href="mailto:info@internationaleducationcamp.com" class="footer-contact-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        info@internationaleducationcamp.com
+      </a>
+
+      <h4 class="footer-heading" style="margin-top:24px;">Follow Us</h4>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/internationaleducationcamp/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100065521360066" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="https://www.linkedin.com/company/international-education-camp/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://theenglishhabit.com/membership/" target="_blank" rel="noopener" class="social-btn social-btn-teal" aria-label="The English Habit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          The English Habit
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /footer-inner -->
+
+  <!-- Footer bottom bar -->
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2025 International Education Camp. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="#" onclick="openModal('privacy-modal');return false;">Privacy Policy</a>
+        <a href="#" onclick="openModal('cookie-modal');return false;">Cookie Policy</a>
+        <a href="#" onclick="openModal('terms-modal');return false;">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  MODALS: Privacy / Cookie / Terms                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<!-- Privacy Policy Modal -->
+<div id="privacy-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('privacy-modal')" aria-label="Close">&times;</button>
+    <h2 id="privacy-title">Privacy Policy</h2>
+    <p><strong>Last updated: January 2025</strong></p>
+    <p>International Education Camp (&ldquo;IEC&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is committed to protecting your personal data in accordance with the EU General Data Protection Regulation (GDPR) and applicable national data protection laws in Italy, Greece, and Spain.</p>
+    <h3>1. Who We Are</h3>
+    <p>International Education Camp is operated by TalentlyED Ltd. For data protection enquiries, contact us at: <a href="mailto:info@internationaleducationcamp.com" style="color:var(--teal);">info@internationaleducationcamp.com</a></p>
+    <h3>2. What Data We Collect</h3>
+    <p>We may collect the following personal data when you use our website or contact us: name and email address (when you submit an enquiry or application), school or organisation name, IP address and browser information (via cookies and analytics tools), and any information you voluntarily provide in correspondence.</p>
+    <h3>3. How We Use Your Data</h3>
+    <p>We use your personal data to respond to enquiries and applications, deliver our programmes and services, improve the website and user experience, comply with legal obligations, and send relevant communications (where you have consented).</p>
+    <h3>4. Legal Basis for Processing</h3>
+    <p>We process your data on the basis of: your consent (which you may withdraw at any time), performance of a contract or pre-contractual steps, and our legitimate interests in operating and improving our services.</p>
+    <h3>5. Data Retention</h3>
+    <p>We retain personal data only for as long as necessary for the purposes set out in this policy, or as required by law. Enquiry data is typically retained for up to 2 years.</p>
+    <h3>6. Your Rights</h3>
+    <p>Under GDPR you have the right to access, rectify, erase, restrict, or object to the processing of your personal data, and the right to data portability. To exercise any of these rights, please contact us at <a href="mailto:info@internationaleducationcamp.com" style="color:var(--teal);">info@internationaleducationcamp.com</a>.</p>
+    <h3>7. Third Parties</h3>
+    <p>We do not sell your personal data. We may share data with trusted service providers (such as analytics platforms) strictly for the purposes described above and under appropriate data processing agreements.</p>
+    <h3>8. Changes to This Policy</h3>
+    <p>We may update this Privacy Policy from time to time. The latest version will always be available on this page.</p>
+  </div>
+</div>
+
+<!-- Cookie Policy Modal -->
+<div id="cookie-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('cookie-modal')" aria-label="Close">&times;</button>
+    <h2 id="cookie-title">Cookie Policy</h2>
+    <p><strong>Last updated: January 2025</strong></p>
+    <p>This Cookie Policy explains how International Education Camp uses cookies and similar technologies on our website, in accordance with EU ePrivacy Directive and GDPR requirements.</p>
+    <h3>What Are Cookies?</h3>
+    <p>Cookies are small text files placed on your device when you visit a website. They help the site remember your preferences and understand how you interact with the site.</p>
+    <h3>Cookies We Use</h3>
+    <p><strong>Strictly Necessary Cookies:</strong> These are essential for the website to function and cannot be switched off. They are set in response to actions you take such as accepting or declining our cookie banner.</p>
+    <p><strong>Analytics Cookies:</strong> We use analytics tools (such as Google Analytics) to understand how visitors use our site — for example, which pages are most visited and how long people spend on each page. This data is aggregated and anonymous. These cookies are only set if you accept cookies.</p>
+    <p><strong>Third-Party Embed Cookies:</strong> Some sections of our site embed third-party content (such as our Instagram feed via Elfsight). These third parties may set their own cookies subject to their own cookie policies.</p>
+    <h3>Managing Cookies</h3>
+    <p>You can control and delete cookies through your browser settings at any time. Please note that disabling certain cookies may affect the functionality of the website. You can also withdraw your consent to non-essential cookies by clicking &ldquo;Decline&rdquo; on our cookie banner.</p>
+    <h3>More Information</h3>
+    <p>For more information about how we handle your data, please see our <a href="#" onclick="closeModal('cookie-modal');setTimeout(()=>openModal('privacy-modal'),200);return false;" style="color:var(--teal);">Privacy Policy</a>. For questions, contact us at <a href="mailto:info@internationaleducationcamp.com" style="color:var(--teal);">info@internationaleducationcamp.com</a>.</p>
+  </div>
+</div>
+
+<!-- Terms & Conditions Modal -->
+<div id="terms-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('terms-modal')" aria-label="Close">&times;</button>
+    <h2 id="terms-title">Terms &amp; Conditions</h2>
+    <p><strong>Last updated: January 2025</strong></p>
+    <p>These Terms &amp; Conditions govern your use of the International Education Camp website (internationaleducationcamp.com) and the services we offer.</p>
+    <h3>1. Use of This Website</h3>
+    <p>By accessing this website, you agree to use it lawfully and in accordance with these terms. You must not use this site in any way that is unlawful, harmful, or fraudulent.</p>
+    <h3>2. Our Services</h3>
+    <p>IEC provides English language immersion camps and school partnership programmes. All programme details, dates, and pricing are subject to change. Participation in IEC programmes is subject to a separate programme agreement between IEC and the relevant school or organisation.</p>
+    <h3>3. Intellectual Property</h3>
+    <p>All content on this website — including text, images, logos, and videos — is the intellectual property of International Education Camp or its licensors. You may not reproduce, distribute, or use any content without our prior written consent.</p>
+    <h3>4. Third-Party Links</h3>
+    <p>This website contains links to third-party websites (including The English Habit and social media platforms). We are not responsible for the content or practices of those sites.</p>
+    <h3>5. Limitation of Liability</h3>
+    <p>To the fullest extent permitted by law, IEC shall not be liable for any indirect, incidental, or consequential damages arising from your use of this website or our services.</p>
+    <h3>6. Governing Law</h3>
+    <p>These terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+    <h3>7. Contact</h3>
+    <p>For any questions regarding these terms, please contact us at <a href="mailto:info@internationaleducationcamp.com" style="color:var(--teal);">info@internationaleducationcamp.com</a>.</p>
+  </div>
+</div>
+
+
+  // ── Modal helpers ──────────────────────────────────────
+  function openModal(id) {
+    var m = document.getElementById(id);
+    if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeModal(id) {
+    var m = document.getElementById(id);
+    if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+  }
+  // Close modals on overlay click or Escape
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+      e.target.classList.remove('open'); document.body.style.overflow = '';
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
+        m.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+    }
+  });
+
+</body>
+</html>
