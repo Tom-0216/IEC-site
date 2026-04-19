@@ -165,17 +165,19 @@
 
     /* ─── COOKIE BANNER ──────────────────────────────────── */
     #cookie-banner {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 999999;
       background: var(--navy); color: #fff; padding: 18px 24px;
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 14px; box-shadow: 0 -4px 20px rgba(0,0,0,.25);
+      pointer-events: all;
     }
     #cookie-banner p { font-size: .88rem; line-height: 1.6; max-width: 700px; }
     #cookie-banner a { color: var(--teal); text-decoration: underline; }
-    #cookie-banner .cookie-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    #cookie-banner .cookie-btns { display: flex; gap: 10px; flex-wrap: wrap; pointer-events: all; }
     #cookie-banner .cookie-btns button {
       padding: 10px 22px; border-radius: 50px; font-weight: 700;
       font-size: .85rem; cursor: pointer; border: none; font-family: inherit;
+      pointer-events: all; position: relative; z-index: 999999;
     }
     .accept-btn { background: var(--teal); color: #fff; }
     .decline-btn { background: transparent; border: 2px solid rgba(255,255,255,.4) !important; color: #fff; }
@@ -662,6 +664,7 @@
       background: #fff; color: var(--red); padding: 18px 32px;
       border-radius: 50px; font-weight: 700; font-size: 1rem;
       transition: var(--transition); text-align: center;
+      white-space: normal; word-break: break-word;
     }
     .apply-email-btn:hover { background: rgba(255,255,255,.9); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.2); }
     .apply-email-btn .icon { font-size: 1.2rem; }
@@ -878,6 +881,18 @@
       .hero-content h1 { font-size: 1.7rem; }
       .section-title { font-size: 1.5rem; }
       .about-badge-num { font-size: 1.8rem; }
+
+      /* Apply / volunteer section */
+      .apply-form { padding: 28px 20px; }
+      .apply-email-btn {
+        flex-direction: column; gap: 8px;
+        padding: 20px 20px; font-size: .88rem;
+        border-radius: 20px; line-height: 1.5;
+      }
+      .apply-email-btn .icon { font-size: 1.5rem; }
+
+      /* General text overflow fix */
+      p, h1, h2, h3, h4, li, a { overflow-wrap: break-word; word-break: break-word; }
     }
       @keyframes hero-blink{0%,100%{opacity:1;}50%{opacity:.25;}}
 </style>
@@ -929,6 +944,12 @@
 
   // ── Run after full page loads ──────────────────────────
   window.addEventListener('DOMContentLoaded', function(){
+    // Cookie banner buttons
+    var acceptBtn = document.querySelector('.accept-btn');
+    var declineBtn = document.querySelector('.decline-btn');
+    if(acceptBtn) acceptBtn.addEventListener('click', closeCookieBanner);
+    if(declineBtn) declineBtn.addEventListener('click', closeCookieBanner);
+
     // Hide cookie banner if already accepted
     try { if(localStorage.getItem('iec-cookie-ok')) closeCookieBanner(); } catch(e){}
 
