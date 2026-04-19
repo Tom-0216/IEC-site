@@ -802,8 +802,8 @@
     /* ─── ANIMATIONS ──────────────────────────────────────── */
     .fade-in { opacity: 1; transform: translateY(0); transition: opacity .6s ease, transform .6s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .js-loaded .fade-in { opacity: 0; transform: translateY(30px); }
-    .js-loaded .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-anim .fade-in { opacity: 0; transform: translateY(30px); }
+    .fade-anim .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 1024px) {
@@ -902,15 +902,6 @@
     if (b) { b.style.display = 'none'; }
     try { localStorage.setItem('iec-cookie-ok','1'); } catch(e){}
   }
-  (function(){
-    try { if(localStorage.getItem('iec-cookie-ok')) closeCookieBanner(); } catch(e){}
-  })();
-
-  // ── Navbar scroll ──────────────────────────────────────
-  window.addEventListener('scroll', function(){
-    var nb = document.getElementById('navbar');
-    if(nb){ nb.classList.toggle('scrolled', window.scrollY > 50); }
-  });
 
   // ── Mobile menu ────────────────────────────────────────
   function toggleMenu() {
@@ -925,13 +916,6 @@
     if(m){ m.classList.remove('open'); }
     if(h){ h.classList.remove('active'); }
   }
-  document.addEventListener('click', function(e){
-    var m = document.getElementById('nav-menu');
-    var h = document.querySelector('.hamburger');
-    if(m && m.classList.contains('open') && !m.contains(e.target) && h && !h.contains(e.target)){
-      closeMenu();
-    }
-  });
 
   // ── Modal ──────────────────────────────────────────────
   function openModal(id) {
@@ -942,30 +926,47 @@
     var el = document.getElementById(id);
     if(el){ el.style.display = 'none'; document.body.style.overflow = ''; }
   }
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){
-      document.querySelectorAll('.modal').forEach(function(m){ m.style.display='none'; });
-      document.body.style.overflow = '';
-    }
-  });
 
-  // ── Fade-in observer ───────────────────────────────────
-  document.documentElement.classList.add('js-loaded');
-  (function(){
-    try {
-      var els = document.querySelectorAll('.fade-in');
-      if('IntersectionObserver' in window){
-        var obs = new IntersectionObserver(function(entries){
-          entries.forEach(function(en){ if(en.isIntersecting) en.target.classList.add('visible'); });
-        },{threshold:0.1});
-        els.forEach(function(el){ obs.observe(el); });
-      } else {
-        els.forEach(function(el){ el.classList.add('visible'); });
+  // ── Run after full page loads ──────────────────────────
+  window.addEventListener('DOMContentLoaded', function(){
+    // Hide cookie banner if already accepted
+    try { if(localStorage.getItem('iec-cookie-ok')) closeCookieBanner(); } catch(e){}
+
+    // Navbar scroll
+    window.addEventListener('scroll', function(){
+      var nb = document.getElementById('navbar');
+      if(nb){ nb.classList.toggle('scrolled', window.scrollY > 50); }
+    });
+
+    // Close menu on outside click
+    document.addEventListener('click', function(e){
+      var m = document.getElementById('nav-menu');
+      var h = document.querySelector('.hamburger');
+      if(m && m.classList.contains('open') && !m.contains(e.target) && h && !h.contains(e.target)){
+        closeMenu();
       }
-    } catch(e){
-      document.querySelectorAll('.fade-in').forEach(function(el){ el.style.opacity='1'; el.style.transform='none'; });
-    }
-  })();
+    });
+
+    // Close modal on Escape
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        document.querySelectorAll('.modal').forEach(function(m){ m.style.display='none'; });
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Fade-in scroll animation — only activates if JS works fine
+    // Content is always visible by default; animation is progressive enhancement
+    try {
+      if('IntersectionObserver' in window){
+        document.documentElement.classList.add('fade-anim');
+        var fadeObs = new IntersectionObserver(function(entries){
+          entries.forEach(function(en){ if(en.isIntersecting) en.target.classList.add('visible'); });
+        },{threshold:0.05, rootMargin:'0px 0px -40px 0px'});
+        document.querySelectorAll('.fade-in').forEach(function(el){ fadeObs.observe(el); });
+      }
+    } catch(e){}
+  });
 </script>
 
 <!-- ═══════════════════════════════════════════════════════ -->
